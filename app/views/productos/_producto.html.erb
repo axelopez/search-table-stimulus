@@ -1,0 +1,11 @@
+<%= tag.tr id: dom_id(producto) do %>
+  <%= tag.td producto.nombre %>
+  <%= tag.td producto.categoria %>
+  
+  <%= tag.td producto.precio, colspan: 2, style: 'text-align: right;' %>
+  <%= tag.td(style: "width:200px") do %>
+    <%= link_to 'Mostrar', producto, data: { turbo: false }, class: 'btn btn-info text-white' %>
+    <%= link_to 'Editar', edit_producto_path(producto), data: { turbo: false }, class: 'btn btn-warning text-white'  %>
+    
+  <% end %>
+<% end %>

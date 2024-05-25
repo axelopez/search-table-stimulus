@@ -1,0 +1,23 @@
+
+<% content_for :title, "Productos" %>
+<div class="card">
+  <div class="card-header">
+    <h3>Productos</h3>
+    <%= link_to 'Nuevo Producto', new_producto_path, class: 'btn btn-primary float-end' %>
+  </div>
+  <div class="card-body">
+
+ 
+<h1>Editing producto</h1>
+
+<%= render "form", producto: @producto %>
+
+<br>
+
+<div>
+  <%= link_to "Show this producto", @producto %> |
+  <%= link_to "Back to productos", productos_path %>
+</div>
+ 
+</div>
+</div>

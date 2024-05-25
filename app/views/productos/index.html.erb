@@ -1,0 +1,54 @@
+<% content_for :title, "Productos" %>
+<div class="card">
+  <div class="card-header">
+    <h3>Productos</h3>
+    <%= link_to 'Nuevo Producto', new_producto_path, class: 'btn btn-primary float-end' %>
+  </div>
+  <div class="card-body">
+     
+      <div class="table-container"> 
+       <%= search_form_for @q , html: {"data-controller": "filters", "data-turbo-frame": "table"} do |f| %>
+      <table class="table">
+        <thead>
+           
+       
+          <tr>
+            <th><%= f.search_field :nombre_cont, class: 'form-control', "data-action": "filters#submit", placeholder: "Nombre"  %></th>
+            <th><%= f.select :categoria_eq, Producto.categoria.keys, {  prompt: "Todas" }, { class: 'form-control', "data-action": "filters#submit" } %></th>
+            <th style="width:150px"><%= f.search_field :precio_gt, class: 'form-control', placeholder: 'Precio del', "data-action": "filters#submit"  %></th>
+            <th style="width:150px">   <%= f.search_field :precio_lt, class: 'form-control', placeholder: 'Precio al', "data-action": "filters#submit"  %>
+            </th>
+            <th><%= f.submit 'Buscar', class: 'btn btn-primary' %> <a href="/productos" id="clear_search" class="btn btn-danger">Todos</a></th>
+          </tr>
+       
+          
+        </thead>
+        </table>
+        <% end %>
+       <%= turbo_frame_tag "table" do %> 
+         
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :nombre) %></th>
+            <th><%= sort_link(@q, :categoria) %></th>
+            <th colspan=2><%= sort_link(@q, :precio) %></th>
+            <th><p class="loading">Loading...</p></th>
+          </tr>
+        
+          
+        </thead>
+        <tbody>
+          <%= render @productos %>
+        </tbody>
+      </table>
+    
+          <%= raw pagy_bootstrap_nav(@pagy) %>
+        <% end %>
+    
+    </div>
+ 
+  </div>
+    
+</div>

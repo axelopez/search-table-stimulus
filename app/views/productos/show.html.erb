@@ -1,0 +1,35 @@
+<% content_for :title, "Productos" %>
+<div class="card">
+  <div class="card-header">
+    <h3>Productos</h3>
+    <%= link_to 'Nuevo Producto', new_producto_path, class: 'btn btn-primary float-end' %>
+  </div>
+  <div class="card-body">
+
+ 
+<p style="color: green"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @producto.nombre %>
+</p>
+<p>
+  <strong>Categoria:</strong>
+  <%= @producto.categoria %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @producto.precio %>
+</p>
+
+<div>
+  <%= link_to "Edit this producto", edit_producto_path(@producto), data: { turbo: false } %> |
+  <%= link_to "Back to productos", productos_path, data: { turbo: false } %>
+
+  <%= button_to "Destroy this producto", @producto, method: :delete %>
+</div>
+ 
+  </div>
+</div>
+ 
